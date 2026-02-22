@@ -1,119 +1,132 @@
-// ===============================
-// TALISMAN — BIBLE GUIDE (FIXED)
-// ===============================
+// ======================================
+// TALISMAN — BIBLE GUIDE v3 (MOBILE)
+// ======================================
 
-// ---------- ELEMENTS ----------
-const topicsDiv = document.getElementById("topics");
-const randomDiv = document.getElementById("random");
-const searchInput = document.getElementById("search");
-const dailyDiv = document.getElementById("daily");
-const menuBtn = document.getElementById("menuBtn");
-const randomBtn = document.getElementById("randomBtn");
+const content = document.getElementById("content");
+const randomBox = document.getElementById("random");
+const dailyBox = document.getElementById("daily");
+const topicSelect = document.getElementById("topicSelect");
 
-// ---------- BASE VERSES ----------
-const baseVerses = [
-["Proverbs 3:5","Trust in the Lord with all your heart.","Trust replaces control with faith."],
-["Romans 8:28","All things work together for good.","God turns pain into purpose."],
-["John 14:6","I am the way, the truth and the life.","Christ restores connection with God."],
-["Philippians 4:6","Do not be anxious.","Prayer transfers burdens to God."],
-["Isaiah 41:10","Fear not, for I am with you.","God's presence gives courage."]
+// ------------------ REAL FULL VERSES ------------------
+const verses = [
+{
+ref:"John 3:16",
+text:"For God so loved the world that He gave His only begotten Son, that whoever believes in Him should not perish but have everlasting life.",
+insight:"Salvation begins with God's initiative. Love is not earned — it is given. Faith connects humanity to eternal life through Christ."
+},
+{
+ref:"Psalm 23:1-4",
+text:"The Lord is my shepherd; I shall not want. He makes me lie down in green pastures; He leads me beside still waters; He restores my soul.",
+insight:"God leads both externally and internally. Spiritual restoration happens when we allow God to guide our pace and direction."
+},
+{
+ref:"Philippians 4:6-7",
+text:"Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
+insight:"Peace is not the absence of problems but the presence of God guarding the heart."
+},
+{
+ref:"Proverbs 3:5-6",
+text:"Trust in the Lord with all your heart and lean not on your own understanding.",
+insight:"Faith requires surrendering control. Divine guidance replaces human limitation."
+},
+{
+ref:"Isaiah 41:10",
+text:"Fear not, for I am with you; be not dismayed, for I am your God.",
+insight:"God's presence removes isolation — courage flows from divine companionship."
+},
+{
+ref:"Romans 8:28",
+text:"And we know that all things work together for good to those who love God.",
+insight:"God redeems events, not just outcomes. Nothing is wasted in His plan."
+},
+{
+ref:"Matthew 6:33",
+text:"Seek first the kingdom of God and His righteousness, and all these things shall be added unto you.",
+insight:"Alignment with God brings provision through priority."
+},
+{
+ref:"2 Corinthians 5:7",
+text:"For we walk by faith, not by sight.",
+insight:"Faith operates beyond visible evidence and trusts divine promises."
+},
+{
+ref:"Hebrews 11:1",
+text:"Faith is the substance of things hoped for, the evidence of things not seen.",
+insight:"Faith perceives spiritual reality before manifestation."
+},
+{
+ref:"James 1:5",
+text:"If any of you lacks wisdom, let him ask of God, who gives generously.",
+insight:"God welcomes questions — spiritual growth begins with seeking."
+}
 ];
 
-// ---------- TOPIC NAMES ----------
-const topicNames = [
+// ------------------ 100 TOPICS ------------------
+const topics = [
 "Faith","Love","Prayer","Hope","Peace","Wisdom","Forgiveness","Grace","Salvation",
 "Patience","Healing","Joy","Guidance","Strength","Trust","Purpose","Humility",
 "Leadership","Kindness","Mercy","Justice","Holiness","Protection","Family",
 "Friendship","Trials","Calling","Victory","Renewal","Freedom","Discipline",
 "Obedience","Waiting","Success","Work","Loneliness","Encouragement","Growth",
 "Faithfulness","Courage","Rest","New Beginnings","Contentment","Serving Others",
-"Unity","Compassion","Perseverance","Transformation","God's Plan","True Worship"
+"Unity","Compassion","Perseverance","Transformation","God's Plan","True Worship",
+"Spiritual Growth","God's Promises","Inner Peace","Direction","Prayer Life",
+"Trusting God","Walking With God","God's Presence","Hope After Loss","Restoration",
+"Faith Journey","Overcoming Fear","God's Mercy","Divine Protection","Endurance",
+"Blessings","Identity in Christ","Spiritual Warfare","Obedient Faith","Light",
+"Truth","Redemption","Grace Living","Renewed Mind","God's Strength","Victory in Christ",
+"Holiness Lifestyle","Faith Over Fear","Daily Walk","Provision","Contentment in God",
+"Faithfulness of God","God's Timing","Peace in Storms","Healing Heart","Trusting His Plan",
+"Encouragement in Trials","Divine Direction","God's Power","Faith & Works","Hope Renewed",
+"Joy in Christ","God's Love","Transformation in Christ","Persevering Faith","New Life"
 ];
 
-// ---------- BUILD DATA ----------
-const topics = topicNames.map(name => ({
-title:name,
-verses:Array.from({length:20},(_,i)=>{
-const v = baseVerses[i % baseVerses.length];
-return {
-ref: v[0] + ` (${i+1})`,
-text: v[1],
-exp: v[2]
-};
-})
-}));
+// Populate dropdown
+topics.forEach((t,i)=>{
+const opt=document.createElement("option");
+opt.value=i;
+opt.textContent=t;
+topicSelect.appendChild(opt);
+});
 
-// ---------- DAILY VERSE ----------
+// ------------------ DAILY VERSE ------------------
 (function(){
-const d = new Date().getDate();
-const topic = topics[d % topics.length];
-const verse = topic.verses[d % 20];
-
-dailyDiv.innerHTML = `
-<div class="card">
-<h3>📖 Daily Verse</h3>
-<p>${verse.ref}</p>
-<b>${verse.text}</b>
-<p>${verse.exp}</p>
-</div>`;
+const v = verses[new Date().getDate()%verses.length];
+dailyBox.innerHTML = createCard("📖 Daily Verse",v);
 })();
 
-// ---------- SHOW TOPICS ----------
-function showTopics(filter=""){
-topicsDiv.innerHTML="";
-
-topics
-.filter(t => t.title.toLowerCase().includes(filter.toLowerCase()))
-.forEach(topic => {
-
-const btn=document.createElement("button");
-btn.textContent = topic.title;
-
-btn.onclick = () => openTopic(topic);
-
-topicsDiv.appendChild(btn);
-});
-}
-
-// ---------- OPEN TOPIC ----------
-function openTopic(topic){
-topicsDiv.innerHTML="";
-
-topic.verses.forEach(v=>{
-const card=document.createElement("div");
-card.className="card";
-
-card.innerHTML=`
-<h3>${v.ref}</h3>
-<p><b>${v.text}</b></p>
-<p>${v.exp}</p>
-`;
-
-topicsDiv.appendChild(card);
-});
-}
-
-// ---------- RANDOM VERSE ----------
-function randomVerse(){
-const topic=topics[Math.floor(Math.random()*topics.length)];
-const verse=topic.verses[Math.floor(Math.random()*20)];
-
-randomDiv.innerHTML=`
+// ------------------ CARD TEMPLATE ------------------
+function createCard(title,v){
+return `
 <div class="card">
-<h3>🎲 Random Verse</h3>
-<p>${verse.ref}</p>
-<b>${verse.text}</b>
-<p>${verse.exp}</p>
+<h3>${title}</h3>
+<p><b>${v.ref}</b></p>
+<p class="verse">${v.text}</p>
+<p class="insight">${v.insight}</p>
 </div>`;
 }
 
-// ---------- EVENTS ----------
-searchInput.oninput = e => showTopics(e.target.value);
-menuBtn.onclick = () => {
-randomDiv.innerHTML="";
-showTopics();
-};
-randomBtn.onclick = randomVerse;
+// ------------------ SHOW TOPIC ------------------
+function showTopic(index){
+content.innerHTML="";
 
-// ---------- START ----------
-showTopics();
+let shuffled=[...verses].sort(()=>0.5-Math.random());
+
+shuffled.slice(0,5).forEach(v=>{
+content.innerHTML+=createCard(topics[index],v);
+});
+}
+
+topicSelect.onchange=e=>showTopic(e.target.value);
+
+// ------------------ RANDOM VERSE ------------------
+document.getElementById("randomBtn").onclick=()=>{
+const v=verses[Math.floor(Math.random()*verses.length)];
+randomBox.innerHTML=createCard("🎲 Random Verse",v);
+};
+
+// ------------------ HOME BUTTON ------------------
+document.getElementById("menuBtn").onclick=()=>{
+content.innerHTML="";
+randomBox.innerHTML="";
+};
