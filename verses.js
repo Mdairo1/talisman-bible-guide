@@ -5,7 +5,6 @@
 
 const bibleVerses = [
 
-/* FAITH */
 {topic:"Faith",ref:"Hebrews 11:1",text:"Now faith is the substance of things hoped for, the evidence of things not seen.",exp:"Faith trusts God's promises beyond visible proof, anchoring believers in spiritual certainty."},
 {topic:"Faith",ref:"Romans 10:17",text:"Faith comes by hearing, and hearing by the word of God.",exp:"Regular exposure to Scripture strengthens spiritual confidence."},
 {topic:"Faith",ref:"Mark 11:24",text:"Whatever you ask in prayer, believe that you have received it.",exp:"Faith aligns prayer with trust in God's power."},
