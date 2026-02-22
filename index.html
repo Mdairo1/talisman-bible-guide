@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Talisman — Bible Guide</title>
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talisman - Bible Guide</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <header>
+    <h1>Talisman - Bible Guide</h1>
+    <button id="menu-btn">Topics ▼</button>
+    <ul id="topic-menu" class="dropdown"></ul>
+  </header>
 
-<header>
-<h1>✨ Talisman</h1>
-<p>Bible Guide</p>
+  <main>
+    <section id="verses-section">
+      <h2 id="topic-title">Select a topic</h2>
+      <div id="verses-container"></div>
+    </section>
+  </main>
 
-<select id="topicSelect"></select>
-
-<div class="buttons">
-<button id="menuBtn">Home</button>
-<button id="randomBtn">Random Verse</button>
-</div>
-</header>
-
-<section id="daily"></section>
-<section id="random"></section>
-<section id="content"></section>
-
-<script src="verses.js"></script>
-<script src="app.js"></script>
-
+  <script src="verses.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
