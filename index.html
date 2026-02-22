@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Talisman — Bible Guide</title>
 
 <link rel="stylesheet" href="style.css">
@@ -10,21 +10,21 @@
 
 <body>
 
-<h1>✨ Talisman — Bible Guide</h1>
+<header>
+<h1>✨ Talisman</h1>
+<p>Bible Guide</p>
 
-<div class="controls">
-<button id="menuBtn">🏠 Main Menu</button>
-<button id="randomBtn">🎲 Random Verse</button>
+<select id="topicSelect"></select>
+
+<div class="buttons">
+<button id="menuBtn">Home</button>
+<button id="randomBtn">Random Verse</button>
 </div>
+</header>
 
-<div id="daily"></div>
-
-<input id="search" placeholder="🔎 Search topics..." />
-
-<div id="random"></div>
-
-<h2>Topics</h2>
-<div id="topics"></div>
+<section id="daily"></section>
+<section id="random"></section>
+<section id="content"></section>
 
 <script src="app.js"></script>
 
