@@ -4,22 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Talisman - Bible Guide</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background:#f9f9f9; }
+    header { background:#4b0082; color:white; padding:1rem; text-align:center; font-size:1.5rem; }
+    .container { padding:1rem; max-width:800px; margin:auto; }
+    select { width:100%; padding:0.5rem; font-size:1rem; margin-bottom:1rem; }
+    .verseCard { background:white; margin-bottom:1rem; padding:1rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    .verseCard h3 { margin:0 0 0.5rem 0; color:#4b0082; }
+    .verseText { font-weight:bold; margin:0.5rem 0; }
+    .verseExp { margin:0.5rem 0; font-style:italic; color:#333; }
+    @media(max-width:600px){
+      header { font-size:1.2rem; }
+      select { font-size:0.9rem; }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Talisman - Bible Guide</h1>
-    <button id="menu-btn">Topics ▼</button>
-    <ul id="topic-menu" class="dropdown"></ul>
-  </header>
-
-  <main>
-    <section id="verses-section">
-      <h2 id="topic-title">Select a topic</h2>
-      <div id="verses-container"></div>
-    </section>
-  </main>
-
+  <header>Talisman - Bible Guide</header>
+  <div class="container">
+    <select id="topicDropdown"></select>
+    <div id="versesContainer"></div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
