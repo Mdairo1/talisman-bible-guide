@@ -3,7 +3,7 @@
    1000 VERIFIED BIBLE VERSES
 =================================== */
 
-const bibleVerses = [/* ===== TOPICS 1–10 ===== */
+const bibleVerses = [
 
 /* FAITH */
 {topic:"Faith",ref:"Hebrews 11:1",text:"Now faith is the substance of things hoped for, the evidence of things not seen.",exp:"Faith trusts God's promises beyond visible proof, anchoring believers in spiritual certainty."},
